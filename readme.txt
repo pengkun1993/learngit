@@ -45,6 +45,7 @@
 	git checkout -b [name] 创建并切换分支
 	git merge [name] 合并某个分支到当前分支
 	git branch -d [name] 删除某个分支
+	ceshi
 
 
 
