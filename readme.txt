@@ -16,27 +16,38 @@
 
 	然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。
 	如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
+4、分支操作
+	git checkout -b dev 
+			创建一个新的分支dev，-b表示创建并切换，这一句相当于下面两句
+			git branch dev
+			git checkout dev
+	git branch 查看当前所有的分支
+	git checkout master 切回master分支
+	git merge dev 命令用于合并指定分支[dev]到当前分支
+	git branch -d dev 删除分支[dev]
 /*****************命令*****************/
-   git init
-   git add [文件名]
-   git commit -m ["备注"]
-   git diff
-   git reset --hard HEAD^/[HEAD~100前100个版本]/[ak293版本号前面几个]
-   /*HEAD指针指向的版本就是当前版本*/
-   git reflog 记录每一次命令
-   git checkout -- file
-        命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令
-   git rm [<options>] [--] <file> 从版本库中删除某文件
-   git remote add origin ...git   添加远程仓库
-   git push -u origin master 
-   		由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。只要本地作了提交，就可以通过命令：git push origin master 操作
-   分支
-   git checkout -b dev 
-   		创建一个新的分支dev，-b表示创建并切换，这一句相当于下面两句
-   		git branch dev
-   		git checkout dev
-   git branch 查看当前所有的分支
-   git checkout master 切回master分支
+	git init
+	git add [文件名]
+	git commit -m ["备注"]
+	git diff
+	git reset --hard HEAD^/[HEAD~100前100个版本]/[ak293版本号前面几个]
+	/*HEAD指针指向的版本就是当前版本*/
+	git reflog 记录每一次命令
+	git checkout -- file
+	    命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令
+	git rm [<options>] [--] <file> 从版本库中删除某文件
+	git remote add origin ...git   添加远程仓库
+	git push -u origin master 
+			由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。只要本地作了提交，就可以通过命令：git push origin master 操作
+	git branch 查看分支
+	git branch [name]创建分支
+	git checkout [name] 切换分支
+	git checkout -b [name] 创建并切换分支
+	git merge [name] 合并某个分支到当前分支
+	git branch -d [name] 删除某个分支
+
+   
+
 
 
 
