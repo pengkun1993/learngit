@@ -25,12 +25,25 @@
 	git checkout master 切回master分支
 	git merge dev 命令用于合并指定分支[dev]到当前分支
 	git branch -d dev 删除分支[dev]
+	合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并,git merge --no-ff -m "merge with no-ff" dev
 5、合并冲突
     当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
 
 	解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
 
 	用git log --graph命令可以看到分支合并图。
+6、修复bug
+	我们会通过创建新的bug分支进行修复，然后合并，最后删除；
+	当手头工作没有完成时，先把工作现场git stash一下，
+	然后去修复bug，修复后，再git stash pop，回到工作现场。
+7、开发新功能
+	开发一个新feature，最好新建一个分支；
+	如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。
+8、并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？
+	master分支是主分支，因此要时刻与远程同步；
+	dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+	bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；
+	feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。
 /*****************命令*****************/
 	git init
 	git add [文件名]
@@ -44,14 +57,25 @@
 	git rm [<options>] [--] <file> 从版本库中删除某文件
 	git remote add origin ...git   添加远程仓库
 	git push -u origin master 
-			由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。只要本地作了提交，就可以通过命令：git push origin master 操作
+			由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。只要本地作了提交，就可以通过命令：git push origin[远程分支名] master[本地分支名] 操作
 	git branch 查看分支
 	git branch [name]创建分支
 	git checkout [name] 切换分支
 	git checkout -b [name] 创建并切换分支
 	git merge [name] 合并某个分支到当前分支
 	git branch -d [name] 删除某个分支
-	ceshi
+
+	git stash 可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作
+	git stash list 查看工作现场
+	git stash apply stash@{0} 恢复指定的现场[stash@{0}]
+	恢复现场：一是用git stash apply恢复，
+	但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
+	另一种方式是用git stash pop，恢复的同时把stash内容也删了
+
+	git remote 查看远程仓库信息 加 -v查看更详细的信息
+
+	git branch --set-upstream-to <branch-name> origin/<branch-name>
+	本地分支和远程分支创建链接关系
 
 
 
